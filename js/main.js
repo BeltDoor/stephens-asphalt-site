@@ -58,13 +58,19 @@
       btn.textContent = 'Sending...';
       btn.disabled = true;
 
-      // Test mode: load the page as contact.html?test=1 to route the lead to the
-      // owner's monitoring inbox only (used during setup, never reaches the business).
+      // Safety: a lead only reaches the business owner when this is served from the
+      // real live domain. Anywhere else (preview, staging, localhost) routes to the
+      // monitoring inbox only. ?test=1 forces monitoring-only even on the live domain.
       try {
-        if (new URLSearchParams(window.location.search).get('test') === '1') {
+        var host = window.location.hostname;
+        var isLive = (host === 'stephensasphalt.com' || host === 'www.stephensasphalt.com');
+        var forceTest = new URLSearchParams(window.location.search).get('test') === '1';
+        if (!isLive || forceTest) {
           data.test = true;
         }
-      } catch (e) {}
+      } catch (e) {
+        data.test = true;
+      }
 
       // Lead is emailed by our own handler (Vercel + Resend) - no third-party form service.
       fetch('https://stephens-asphalt-leads.vercel.app/api/lead.js', {
