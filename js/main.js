@@ -58,25 +58,23 @@
       btn.textContent = 'Sending...';
       btn.disabled = true;
 
-      // FormSubmit delivers the lead by email - no server to maintain.
-      data._subject = 'New Website Lead: ' + (data.name || 'Unknown') + " - Stephen's Asphalt";
-      data._cc = 'evan.t.stephen@gmail.com';
-      data._template = 'table';
-      data._captcha = 'false';
-      if (data.email) {
-        data._replyto = data.email;
-        data._autoresponse = "Thanks for reaching out to Stephen's Asphalt Paving. We got your request and will get back to you within one business day. If it's urgent, call us at (330) 284-9121.";
-      }
+      // Test mode: load the page as contact.html?test=1 to route the lead to the
+      // owner's monitoring inbox only (used during setup, never reaches the business).
+      try {
+        if (new URLSearchParams(window.location.search).get('test') === '1') {
+          data.test = true;
+        }
+      } catch (e) {}
 
-      // Hashed FormSubmit alias for jacob@king-intelligence.com (keeps the address out of page source)
-      fetch('https://formsubmit.co/ajax/a429c6527805c5da2eb44277baaad7df', {
+      // Lead is emailed by our own handler (Vercel + Resend) - no third-party form service.
+      fetch('https://stephens-asphalt-leads.vercel.app/api/lead.js', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
         body: JSON.stringify(data)
       })
         .then(function (res) { return res.json(); })
         .then(function (json) {
-          if (json && (json.success === 'true' || json.success === true)) {
+          if (json && (json.success === true || json.success === 'true')) {
             showFormSuccess(data.name);
           } else {
             showFormError(btn, originalText);
