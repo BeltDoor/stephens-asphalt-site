@@ -68,7 +68,8 @@
         data._autoresponse = "Thanks for reaching out to Stephen's Asphalt Paving. We got your request and will get back to you within one business day. If it's urgent, call us at (330) 284-9121.";
       }
 
-      fetch('https://formsubmit.co/ajax/jacob@king-intelligence.com', {
+      // Hashed FormSubmit alias for jacob@king-intelligence.com (keeps the address out of page source)
+      fetch('https://formsubmit.co/ajax/a429c6527805c5da2eb44277baaad7df', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
         body: JSON.stringify(data)
