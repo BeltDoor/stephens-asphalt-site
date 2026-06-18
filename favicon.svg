@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="Stephen's Asphalt">
+  <!-- full-bleed asphalt-black tile -->
+  <rect x="0" y="0" width="64" height="64" fill="#1a1a1a"/>
+  <!-- subtle gold inner frame -->
+  <rect x="5" y="5" width="54" height="54" rx="8" fill="none" stroke="#D19505" stroke-opacity="0.5" stroke-width="1.6"/>
+  <!-- gold serif monogram S -->
+  <text x="32" y="33" text-anchor="middle" dominant-baseline="central"
+        font-family="Georgia, 'Times New Roman', serif"
+        font-weight="700" font-size="40" fill="#D19505">S</text>
+  <!-- paving road-stripe accent -->
+  <g fill="#D19505">
+    <rect x="17" y="50" width="8" height="2.6" rx="1.3"/>
+    <rect x="28" y="50" width="8" height="2.6" rx="1.3"/>
+    <rect x="39" y="50" width="8" height="2.6" rx="1.3"/>
+  </g>
+</svg>

@@ -1734,3 +1734,12 @@ body.nav-open .nav-panel-overlay {
     letter-spacing: -1.4px;
   }
 }
+
+
+/* === Logo lockup (added 6/18/26) === */
+.nav-brand { display: inline-flex; align-items: center; gap: 11px; text-decoration: none; }
+.nav-brand .nav-mark { display: block; width: 34px; height: 34px; border-radius: 7px; flex: none; }
+.nav-wordmark { display: flex; flex-direction: column; line-height: 1; }
+.nav-name { font-family: var(--font-brand); font-weight: 900; font-size: 17px; letter-spacing: 0.4px; text-transform: uppercase; color: var(--dark); }
+.nav-tag { font-family: var(--font-sans); font-weight: 600; font-size: 8.5px; letter-spacing: 1.6px; text-transform: uppercase; color: var(--accent); margin-top: 3px; }
+@media (max-width: 600px) { .nav-tag { display: none; } .nav-name { font-size: 15px; } .nav-brand .nav-mark { width: 30px; height: 30px; } }
